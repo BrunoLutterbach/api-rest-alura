@@ -1,5 +1,6 @@
 package br.com.brunolutterbach.forum.controller;
 
+import br.com.brunolutterbach.forum.controller.dto.TopicoDto;
 import br.com.brunolutterbach.forum.modelo.Curso;
 import br.com.brunolutterbach.forum.modelo.Topico;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +13,9 @@ import java.util.List;
 public class TopicosController {
 
     @RequestMapping("/topicos")
-    public List<Topico> lista() {
+    public List<TopicoDto> lista() {
         Topico topico = new Topico("Duvida", "Como funciona o Spring MVC?", new Curso("Spring", "Programação"));
 
-        return Arrays.asList(topico, topico, topico);
+        return TopicoDto.converter(Arrays.asList(topico, topico, topico));
     }
 }
