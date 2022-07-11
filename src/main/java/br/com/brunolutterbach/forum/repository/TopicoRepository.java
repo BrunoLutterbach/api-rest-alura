@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface TopicoRepository extends JpaRepository<Topico, Long> {
 
-    @Query("SELECT t FROM Topico t WHERE t.curso.nome = :nomeCurso")
+    @Query("SELECT t FROM Topico t WHERE t.curso.nome LIKE %:nomeCurso%")
     List<Topico> listarPorNomeDoCurso(@Param("nomeCurso") String nomeCurso);
 
 }
