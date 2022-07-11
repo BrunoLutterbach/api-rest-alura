@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 public class TopicoDto {
 
     private Long id;
+    private String nomeCurso;
     private String titulo;
     private String mensagem;
     private LocalDateTime dataCriacao;
-    private String nomeCurso;
 
 
     public TopicoDto(Topico topico) {
