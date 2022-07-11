@@ -1,12 +1,23 @@
 package br.com.brunolutterbach.forum.modelo;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
+@Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Curso {
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	private Long id;
 	private String nome;
 	private String categoria;
@@ -15,7 +26,7 @@ public class Curso {
 		this.nome = nome;
 		this.categoria = categoria;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

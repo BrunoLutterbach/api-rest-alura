@@ -1,18 +1,33 @@
 package br.com.brunolutterbach.forum.modelo;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+@Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Resposta {
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	private Long id;
 	private String mensagem;
+
+	@ManyToOne
 	private Topico topico;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
+
+	@ManyToOne
 	private Usuario autor;
 	private Boolean solucao = false;
 
