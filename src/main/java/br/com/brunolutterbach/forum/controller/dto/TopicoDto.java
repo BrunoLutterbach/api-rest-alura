@@ -21,10 +21,10 @@ public class TopicoDto {
 
     public TopicoDto(Topico topico) {
         this.id = topico.getId();
+        this.nomeCurso = topico.getCurso().getNome();
         this.titulo = topico.getTitulo();
         this.mensagem = topico.getMensagem();
         this.dataCriacao = topico.getDataCriacao();
-        this.nomeCurso = topico.getCurso().getNome();
     }
 
     // Converte uma lista de topicos para uma lista de topicosDto
