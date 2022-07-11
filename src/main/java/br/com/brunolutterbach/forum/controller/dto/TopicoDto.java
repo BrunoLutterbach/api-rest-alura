@@ -1,5 +1,6 @@
 package br.com.brunolutterbach.forum.controller.dto;
 
+import br.com.brunolutterbach.forum.modelo.Curso;
 import br.com.brunolutterbach.forum.modelo.Topico;
 import lombok.Data;
 import org.springframework.beans.MutablePropertyValues;
@@ -15,12 +16,15 @@ public class TopicoDto {
     private String titulo;
     private String mensagem;
     private LocalDateTime dataCriacao;
+    private String nomeCurso;
+
 
     public TopicoDto(Topico topico) {
         this.id = topico.getId();
         this.titulo = topico.getTitulo();
         this.mensagem = topico.getMensagem();
         this.dataCriacao = topico.getDataCriacao();
+        this.nomeCurso = topico.getCurso().getNome();
     }
 
     // Converte uma lista de topicos para uma lista de topicosDto
