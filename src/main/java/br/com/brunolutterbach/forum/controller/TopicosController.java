@@ -1,5 +1,6 @@
 package br.com.brunolutterbach.forum.controller;
 
+import br.com.brunolutterbach.forum.controller.dto.DetalhesDoTopicoDto;
 import br.com.brunolutterbach.forum.controller.dto.TopicoDto;
 import br.com.brunolutterbach.forum.controller.dto.form.TopicoForm;
 import br.com.brunolutterbach.forum.modelo.Topico;
@@ -12,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/topicos")
@@ -44,4 +46,16 @@ public class TopicosController {
         URI uri = uriBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
         return ResponseEntity.created(uri).body(new TopicoDto(topico));
     }
+
+    // Esse e
+    @GetMapping("/{id}")
+    public DetalhesDoTopicoDto detalhar(@PathVariable Long id) {
+        Optional<Topico> topico = topicoRepository.findById(id);
+        if (topico.isPresent()) {
+            return new DetalhesDoTopicoDto(topico.get());
+        } else {
+            throw new IllegalArgumentException("Topico não encontrado");
+        }
+    }
+
 }
