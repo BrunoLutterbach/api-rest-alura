@@ -66,5 +66,16 @@ public class TopicosController {
         Topico topico = form.atualizar(id, topicoRepository);
         return ResponseEntity.ok(new TopicoDto(topico));
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<TopicoDto> remover(@PathVariable Long id) {
+        if (topicoRepository.existsById(id)) {
+            topicoRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        } else {
+            throw new IllegalArgumentException("Topico não encontrado");
+        }
+    }
 }
 
