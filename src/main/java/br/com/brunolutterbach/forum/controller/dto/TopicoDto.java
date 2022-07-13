@@ -2,10 +2,10 @@ package br.com.brunolutterbach.forum.controller.dto;
 
 import br.com.brunolutterbach.forum.modelo.Topico;
 import lombok.Data;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Data
 public class TopicoDto {
@@ -23,8 +23,7 @@ public class TopicoDto {
         this.dataCriacao = topico.getDataCriacao();
     }
 
-    // Converte uma lista de topicos para uma lista de topicosDto
-    public static List<TopicoDto> converter(List<Topico> topicos) {
-        return topicos.stream().map(TopicoDto::new).collect(Collectors.toList());
+    public static Page<TopicoDto> converter(Page<Topico> topicos) {
+        return topicos.map(TopicoDto::new);
     }
 }
