@@ -8,9 +8,10 @@ import br.com.brunolutterbach.forum.modelo.Topico;
 import br.com.brunolutterbach.forum.repository.CursoRepository;
 import br.com.brunolutterbach.forum.repository.TopicoRepository;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -34,7 +35,7 @@ public class TopicosController {
     }
 
     @GetMapping()
-    public Page<TopicoDto> lista(@RequestParam(required = false) String nomeCurso, Pageable paginacao) {
+    public Page<TopicoDto> lista(@RequestParam(required = false) String nomeCurso, @PageableDefault(sort = "id", direction = Direction.ASC) Pageable paginacao) {
 
         if (nomeCurso == null) {
             Page<Topico> topicos = topicoRepository.findAll(paginacao);
